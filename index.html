@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="one()">
+
+    
+
+    Enter Grocery Name: <input type="text" id="newgrocery"/>
+    <button onclick="save()" >Save</button>
+<br/><br/>
+<p id="message">
+
+</p>
+
+    <table width="500" cellpadding="15" >
+        <tr bgcolor="skyblue">
+            <th>Grocery Id</th>
+            <th>Grocery Name</th>
+            <th>Action</th>
+        </tr>
+        <tbody id="container"></tbody>
+    </table>
+
+    <script>
+        var grocerylist=["Oil","Rice","Bread","Ketchup","Vegetables"];
+
+        function one(){
+            
+            var data= "";
+            
+            for(var i=0; i<grocerylist.length; i++){
+                data=data+"<tr align='center'>";
+                data=data+"<td>"+i+"</td>";
+                data=data+"<td>"+grocerylist[i]+"</td>";
+                data=data+"<td><button onclick='deletegrocery("+i+")'>Delete</button></td>";
+                data=data+"</tr>";
+            }
+            document.getElementById("container").innerHTML=data;
+        }
+
+        function save(){
+            var groceryname=document.getElementById("newgrocery").value;
+            
+             grocerylist.unshift(groceryname);//to add at beginning of array
+            console.log(grocerylist);
+            one(); //to reload the list
+                     
+        }
+
+
+        function deletegrocery(index){
+            alert(index);
+            grocerylist.splice(index,1);  //0 for adding , 1 for deleting
+            one();
+        }
+    </script>
+</body>
+</html>
